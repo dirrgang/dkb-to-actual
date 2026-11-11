@@ -1,0 +1,10 @@
+"Kreditkarte:";"4748********0001 Kreditkarte";
+
+"Von:";"01.10.2026";
+"Bis:";"31.10.2026";
+"Saldo:";"-42,00 EUR";
+"Datum:";"31.10.2026";
+
+"Umsatz abgerechnet und nicht im Saldo enthalten";"Wertstellung";"Belegdatum";"Beschreibung";"Betrag (EUR)";"Ursprünglicher Betrag";
+"Nein";"30.10.2026";"29.10.2026";"BÄCKEREI BEISPIEL";"-5,40";"";
+"Ja";"02.10.2026";"01.10.2026";"EXAMPLE STREAMING";"-9,99";"-11,49 USD";

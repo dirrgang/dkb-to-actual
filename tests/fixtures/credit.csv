@@ -1,0 +1,8 @@
+﻿"Karte";"Visa Kreditkarte";"4930 **** **** 0001"
+""
+"Saldo vom 11.11.2026:";"-123,45 €"
+""
+"Belegdatum";"Wertstellung";"Status";"Beschreibung";"Umsatztyp";"Betrag (€)";"Fremdwährungsbetrag"
+"10.11.26";"11.11.26";"Vorgemerkt";"EXAMPLE HOTEL";"Im Geschäft";"-89,00 €";""
+"08.11.26";"09.11.26";"Gebucht";"EXAMPLE CLOUD INC";"Online";"-18,37 €";"-20,00 USD"
+"05.11.26";"06.11.26";"Gebucht";"Ausgleich Kreditkarte";"Gutschrift";"500,00 €";""

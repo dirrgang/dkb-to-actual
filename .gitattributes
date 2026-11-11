@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Fixtures must stay byte-exact (UTF-8 BOM, cp1252, LF) on every platform.
+tests/fixtures/** -text

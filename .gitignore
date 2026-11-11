@@ -1,0 +1,32 @@
+# --- Privacy: never commit real bank data ---------------------------------
+# Only the synthetic fixtures in tests/fixtures/ are allowed.
+*.csv
+*.CSV
+*.ofx
+*.OFX
+!tests/fixtures/**
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+*.egg-info/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Editors / OS --------------------------------------------------------------
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Local tooling -------------------------------------------------------------
+mise.local.toml
+.claude/settings.local.json

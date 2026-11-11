@@ -1,0 +1,41 @@
+# Run with prek (https://github.com/j178/prek): `mise run hooks` installs the git hook.
+exclude: ^tests/fixtures/
+repos:
+  - repo: local
+    hooks:
+      - id: forbid-bank-exports
+        name: forbid real bank exports
+        description: Real DKB exports contain personal data and must never be committed.
+        language: fail
+        entry: "Real bank exports must not be committed (use synthetic files in tests/fixtures/):"
+        files: '(?i)(umsatzliste|\.ofx$|\.actual\.csv$)'
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: d1df990f871e616da38bb602a2671d5e840b9989 # 0.13.7
+    hooks:
+      - id: uv-lock
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: c0f278f1254ccc8fb09676bcdb8d847e7db493e5 # v0.17.4
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: 06a39750ec31860bb44f2acf67182c40016cd1e7 # v1.32.0
+    hooks:
+      - id: zizmor
