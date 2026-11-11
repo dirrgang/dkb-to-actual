@@ -1,6 +1,6 @@
 [project]
 name = "dkb-to-actual"
-version = "0.1.0"
+version = "0.1.1"
 description = "Convert DKB CSV exports (Girokonto, Tagesgeld, Kreditkarte) into CSV or OFX files for Actual Budget."
 readme = "README.md"
 license = "MIT"
