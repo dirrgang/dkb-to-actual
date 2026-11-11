@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/dirrgang/dkb-to-actual/actions/workflows/ci.yml/badge.svg)](https://github.com/dirrgang/dkb-to-actual/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/dkb-to-actual)](https://pypi.org/project/dkb-to-actual/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dirrgang/dkb-to-actual/blob/main/LICENSE)
 
 Convert CSV exports from [DKB](https://www.dkb.de/) (Girokonto, Tagesgeld, Kreditkarte) into
 files that [Actual Budget](https://actualbudget.org/) can import, either as **CSV** or as **OFX**.
@@ -103,4 +103,4 @@ merging one publishes the package to PyPI via trusted publishing.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/dirrgang/dkb-to-actual/blob/main/LICENSE)
