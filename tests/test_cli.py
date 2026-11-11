@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import shutil
 from pathlib import Path
 
@@ -9,7 +10,15 @@ from typer.testing import CliRunner
 from dkb_to_actual.cli import app, default_output
 from dkb_to_actual.writers import OutputFormat
 
-runner = CliRunner()
+runner = CliRunner(env={"COLUMNS": "200", "NO_COLOR": "1"})
+
+_ANSI = re.compile(r"\x1b\[[0-9;]*m")
+_BOX = re.compile(r"[│╭╮╰╯─┌┐└┘]")
+
+
+def plain(output: str) -> str:
+    """Rich forces colors and boxes on CI (GITHUB_ACTIONS); reduce to plain, unwrapped text."""
+    return " ".join(_BOX.sub(" ", _ANSI.sub("", output)).split())
 
 
 def test_default_output_next_to_input(tmp_path: Path, giro_csv: Path) -> None:
@@ -19,7 +28,7 @@ def test_default_output_next_to_input(tmp_path: Path, giro_csv: Path) -> None:
     assert result.exit_code == 0, result.output
     out = tmp_path / "giro.actual.csv"
     assert out.read_text(encoding="utf-8").startswith("Date,Payee,Notes,Amount\n")
-    assert "8 transactions, 1 skipped" in result.output
+    assert "8 transactions, 1 skipped" in plain(result.output)
 
 
 def test_default_output_name() -> None:
@@ -59,7 +68,7 @@ def test_latest(tmp_path: Path, giro_csv: Path) -> None:
 
     result = runner.invoke(app, [str(tmp_path)])
     assert result.exit_code == 2
-    assert "--latest" in result.output
+    assert "--latest" in plain(result.output)
 
 
 @pytest.mark.parametrize(
@@ -74,7 +83,7 @@ def test_bad_parameters(giro_csv: Path, args: list[str], message: str) -> None:
     argv = [a.format(giro=giro_csv) for a in args] + [str(giro_csv)]
     result = runner.invoke(app, argv)
     assert result.exit_code == 2
-    assert message in result.output
+    assert message in plain(result.output)
 
 
 def test_parse_error(tmp_path: Path) -> None:
@@ -82,7 +91,7 @@ def test_parse_error(tmp_path: Path) -> None:
     bad.write_text("foo;bar\n", encoding="utf-8")
     result = runner.invoke(app, [str(bad)])
     assert result.exit_code == 1
-    assert "unrecognized file" in result.output
+    assert "unrecognized file" in plain(result.output)
 
 
 def test_permission_error(tmp_path: Path, giro_csv: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -92,7 +101,7 @@ def test_permission_error(tmp_path: Path, giro_csv: Path, monkeypatch: pytest.Mo
     monkeypatch.setattr(Path, "write_text", deny)
     result = runner.invoke(app, [str(giro_csv), "-o", str(tmp_path / "out.csv")])
     assert result.exit_code == 1
-    assert "Close the file" in result.output
+    assert "Close the file" in plain(result.output)
 
 
 def test_version() -> None:
