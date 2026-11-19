@@ -97,9 +97,11 @@ mise run check        # lint + typecheck + tests
 mise run fmt          # format and auto-fix
 ```
 
-Commits follow [Conventional Commits](https://www.conventionalcommits.org/).
-[release-please](https://github.com/googleapis/release-please) opens release PRs from them, and
-merging one publishes the package to PyPI via trusted publishing.
+Pull requests are squash-merged, and their title alone becomes the commit on `main`, so the title
+must follow [Conventional Commits](https://www.conventionalcommits.org/) (checked in CI; `!`
+marks a breaking change, e.g. `feat(cli)!: rename --output`).
+[release-please](https://github.com/googleapis/release-please) opens release PRs from these
+commits, and merging one publishes the package to PyPI via trusted publishing.
 
 ## License
 
